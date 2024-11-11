@@ -1,0 +1,27 @@
+# Streamlit and dependencies
+streamlit
+
+# LangChain and its dependencies (remove specific version to let pip choose)
+langchain
+langchain_community
+InstructorEmbedding
+
+# FAISS for vector storage
+faiss-cpu==1.7.3
+
+# Sentence Transformers for embeddings
+sentence-transformers==2.2.2
+
+# Hugging Face dependencies
+transformers==4.30.2
+huggingface-hub==0.16.4
+
+# PyTorch for Hugging Face models
+torch==2.0.1
+
+# Additional utility libraries
+numpy==1.24.3
+scipy==1.10.1
+
+# To handle compatibility for FlashrankRerank if required
+rank-bm25==0.2.2
