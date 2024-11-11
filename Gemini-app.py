@@ -1,6 +1,5 @@
 import os
 import streamlit as st
-from dotenv import load_dotenv
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from langchain_community.vectorstores import FAISS
@@ -10,9 +9,6 @@ from langchain.retrievers import ContextualCompressionRetriever
 from langchain.retrievers.document_compressors import FlashrankRerank
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 
-
-
-load_dotenv()
 
 # Function to save uploaded files
 def save_uploaded_file(uploaded_file, directory):
@@ -43,8 +39,9 @@ def get_conversation_chain(vectorstore):
     prompt = PromptTemplate(
         template=template, input_variables=["context", "question"]
     )
-    
-    llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro")
+
+    api_key = os.environ['Google_API_TOKEN'] = st.secrets['Google_API_TOKEN']
+    llm = ChatGoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=api_key)
     
 
     retriever=vectorstore.as_retriever(search_type='similarity', search_kwargs={"k": 3})
