@@ -6,7 +6,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_google_genai import ChatGoogleGenerativeAI
 from sentence_transformers import SentenceTransformer, util
 from langchain.retrievers import ContextualCompressionRetriever
-from langchain.retrievers.document_compressors import FlashrankRerank
+from langchain.retrievers.document_compressors import FlashrankRerank, LLMChainExtractor
 from langchain_community.embeddings import HuggingFaceInstructEmbeddings
 
 
@@ -47,7 +47,7 @@ def get_conversation_chain(vectorstore):
     retriever=vectorstore.as_retriever(search_type='similarity', search_kwargs={"k": 3})
 
     # Initialize the FlashrankRerank compressor with the correct model name
-    compressor = FlashrankRerank()
+    compressor = LLMChainExtractor.from_llm(llm)
 
     #Continue with the ContextualCompressionRetriever setup
     compression_retriever = ContextualCompressionRetriever(base_compressor=compressor, base_retriever=retriever)
