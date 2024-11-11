@@ -5,6 +5,7 @@ streamlit
 langchain
 langchain_community
 InstructorEmbedding
+langchain_google_genai
 
 # FAISS for vector storage
 faiss-cpu==1.7.3
